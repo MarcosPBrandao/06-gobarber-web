@@ -17,9 +17,7 @@ interface AuthContextData {
   signOut(): void;
 }
 
-const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData,
-);
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
@@ -56,9 +54,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 };
 
 export function useAuth(): AuthContextData {
-   const context = useContext(AuthContext);
-   if (!context) {
-     throw new Error('useAuth must be used within an AuthProvider')
-   }
-   return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 }
