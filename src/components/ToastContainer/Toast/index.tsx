@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
-import { FiAlertCircle, FiCheckCircle, FiInfo , FiXCircle } from 'react-icons/fi';
+import {
+  FiAlertCircle,
+  FiCheckCircle,
+  FiInfo,
+  FiXCircle,
+} from 'react-icons/fi';
 import { Container } from './styles';
 import { ToastMessage, useToast } from '../../../hooks/Toast';
+
 interface ToastProps {
-   message: ToastMessage;
-   style: object;
+  message: ToastMessage;
+  style: object;
 }
 const icons = {
-   info: <FiInfo size={74} />,
-   error: <FiAlertCircle size={74} />,
-   success: <FiCheckCircle size={74} />
+  info: <FiInfo size={74} />,
+  error: <FiAlertCircle size={74} />,
+  success: <FiCheckCircle size={74} />,
 };
 const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
@@ -19,12 +25,15 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
     }, 3000);
     return () => {
       clearTimeout(timer);
-    }
+    };
   }, [removeToast, message.id]);
   return (
-    <Container type={message.type} 
-      hasDescription={!!message.description} style={style} >
-        {icons[message.type || 'info'] }
+    <Container
+      type={message.type}
+      hasDescription={Number(!!message.description)}
+      style={style}
+    >
+      {icons[message.type || 'info']}
       <FiAlertCircle size={20} />
       <div>
         <strong>{message.title}</strong>
@@ -32,7 +41,7 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
       </div>
       <button onClick={() => removeToast(message.id)} type="button">
         <FiXCircle size={18} />
-      </button>      
+      </button>
     </Container>
   );
 };
