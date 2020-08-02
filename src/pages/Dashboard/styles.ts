@@ -42,12 +42,16 @@ export const Profile = styled.div`
     flex-direction: column;
     margin-left: 16px;
     line-height: 24px;
-  }
-  span {
-    color: #f4ede8;
-  }
-  strong {
-    color: #ff9000;
+    span {
+      color: #f4ede8;
+    }
+    a {
+      text-decoration: none;
+      color: #ff9000;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 `;
 

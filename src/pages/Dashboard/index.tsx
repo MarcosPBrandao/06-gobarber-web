@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { isToday, format, isAfter } from 'date-fns';
-import ptBr from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { FiPower, FiClock } from 'react-icons/fi';
 import { ptBR } from 'date-fns/esm/locale';
 import { parseISO } from 'date-fns/esm';
-import { date } from 'yup';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -85,8 +84,6 @@ const Dashboard: React.FC = () => {
           };
         });
         setAppointments(appointmentsFormated);
-        console.log(response.data);
-        // console.log(`formatado ${appointmentsFormated}`);
       });
   }, [selectedDate]);
 
@@ -138,7 +135,9 @@ const Dashboard: React.FC = () => {
             />
             <div>
               <span>Bem-Vindo,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
           <button type="button" onClick={signOut}>
